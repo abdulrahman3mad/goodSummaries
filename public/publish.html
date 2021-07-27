@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="css/publish.min.css">
+    <title>Document</title>
+</head>
+<body>
+    <header>
+        <div class="logo">
+            <img src="images/logo3.png" alt="logo">
+            <a href="signup.html">Sign up</a>
+        </div>
+        <ul class="utilities">
+            <li><a href="home.html">Home</a></li>
+            <li><a href="challenge.html">Challenges</a></li>
+            <li><a href="publish.html">Publish</a></li>
+        </ul>   
+    </header>
+    <main class="contentPadding">
+        <form action="" method="POST">
+            <label for="title">Title</label>
+            <input type="text" name="title" id="title">
+            <label for="cover">cover</label>
+            <input type="file" name="cover" id="cover">
+            <div class="summaryBox">
+                <label for="summary">Summary</label>
+                <ul class="writeReadOptions">
+                    <li data-type = "summary" class="option ">Edit</li>
+                    <li data-type = "contentBox" class="option active preview">Preview</li>
+                </ul>
+                <textarea name="summary" id="summary" class="none area" cols="30" rows="10"></textarea>
+                <div class="contentBox area" id="contentBox"></div>
+            </div>
+            <label for="category">Category</label>
+            <select name="category" id="category">
+                <option value="Culture">Culture</option>
+                <option value="Art">Art</option>
+                <option value="Computer">Computer science</option>
+                <option value="Literary">Literary</option>
+                <option value=""></option>
+                <option value=""></option>
+                <option value=""></option>
+            </select>
+            <button type="submit">Submit</button>
+        </form>
+    </main>
+    
+    <footer>
+        <h5></h5>
+        <p></p>
+        <ul>
+            <li></li>
+            <li></li>
+        </ul>
+    </footer>
+    <script>
+        let Options = document.querySelectorAll(".option")
+        let areas = document.querySelectorAll(".area")
+        console.log(Options);
+        Options.forEach(option => {
+            option.addEventListener("click", () => {
+                let area = document.getElementById(option.dataset.type)
+                Options.forEach(option => {
+                    option.classList.remove("active")
+                })
+                option.classList.add("active")
+                areas.forEach(area => {
+                    area.classList.add("none");
+                })
+                area.classList.remove("none")
+            })
+        });
+    </script>
+    <script src="js/markdown.js"></script>
+</body>
+</html>

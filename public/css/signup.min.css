@@ -1,0 +1,2 @@
+@import url("https://fonts.googleapis.com/css2?family=Cairo:wght@400&display=swap");*{margin:0;padding:0;box-sizing:border-box}body{background-color:#eee;font-family:"Cairo",sans-serif;color:#767A7F}ul{list-style:none}.none{display:none !important}@media screen and (min-width: 769px){.none{display:flex}}a{text-decoration:none}a:focus{color:#0EC2C5}input:focus,select:focus,textarea:focus{outline:1px solid #0EC2C5}input,textarea{padding:3px 10px !important}.mainCover{width:50px}.mainCover img{max-width:100%}
+/*# sourceMappingURL=signup.min.css.map */

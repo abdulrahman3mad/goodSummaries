@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="/css/profile.min.css">
+    <title>Document</title>
+</head>
+<body>
+    <%-include("partials/header.ejs")%>
+    <section class="mainContent contentPadding" >
+        <div class="userData">
+            <div class="profileImage"><img src="/images/profile_image.png" alt=""></div>
+            <div>
+                <h3>Abdulrahman Emad</h3>
+                <a href="/editProfile/<%=user._id%>">Edit data</a>
+            </div>
+        </div>
+            <section class="allBooks">
+                <h4 class="booksTitle publishedTitle active" data-books = "publishedBooks">Published books</h4>
+                <h4 class="booksTitle savedTitle" data-books = "savedBooks">Saved Books</h4>
+                <section class="publishedBooks books" id="publishedBooks">
+                    <%publishedSummaries.forEach(summary => {%>
+                        <%-include("partials/summaries", {summary:summary})%>
+                    <%})%>
+                </section>
+            </section>
+    </section>
+        <%-include("partials/footer.ejs")%>
+    <script> 
+        let titles = document.querySelectorAll(".booksTitle")
+        let lists = document.querySelectorAll(".books")
+        titles.forEach(title => {
+            title.addEventListener("click", () => {
+                lists.forEach(list => {
+                    list.classList.add("none")
+                })
+                let books = document.getElementById(title.dataset.books);
+                books.classList.remove("none");
+
+                titles.forEach(title => {
+                    title.classList.remove("active")
+                })
+                title.classList.add("active")
+                
+            })
+        });
+    </script>
+</body>
+</html>

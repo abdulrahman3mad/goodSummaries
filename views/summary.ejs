@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="/css/book.min.css">
+    <title>Document</title>
+</head>
+<body>
+    <%-include("partials/header.ejs")%>
+    <section class="content contentPadding">
+        <section class="bookHeader">
+            <div class="bookImage"><img src="/images/bookimage.jpg" alt=""></div>
+            <div class="icons">
+                <div class="edit icon"><a href="edit"></a>edit</div>
+                <div class="delete icon"><a href="delete"></a>delete</div>
+           </div>
+        </section>
+        <h1><%=summary.title%></h1>
+        <p>by <a href="writer"><%=summary.publisher%></a></p>
+        <div class="bookContent">
+            <%-summary.content%>
+        </div>
+    </section>
+  <%-include("partials/footer.ejs")%>
+</body>
+</html>

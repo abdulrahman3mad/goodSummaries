@@ -2,7 +2,7 @@
     "version": 3,
     "mappings": "AAAA,OAAO,CAAC,2EAAI,CAQZ,AAAA,GAAG,AAAA,CACC,KAAK,CAAC,KAAK,CACX,MAAM,CAAC,YAAY,CAItB,AAND,AAGI,GAHD,CAGC,GAAG,AAAA,CACC,SAAS,CAAC,IACd,CAAC,AAGL,AAAA,CAAC,AAAA,CACG,UAAU,CAAE,MAAM,CAClB,SAAS,CAAC,MAAM,CAChB,WAAW,CAlBJ,OAAO,CAAE,UAAU,CAmB7B",
     "sources": [
-        "../sass/404.scss"
+        "../../sass/404.scss"
     ],
     "names": [],
     "file": "404.min.css"

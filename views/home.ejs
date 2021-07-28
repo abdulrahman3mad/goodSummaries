@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="css/home.min.css">
+    <title>Document</title>
+</head>
+<body>
+    <%-include("partials/header.ejs")%>
+    <section class="mainView">
+        <div class="viewImage"> 
+          <div class="text min-none">
+            <h1 class="upperText">Read And Make Us Read</h1>
+            <p>Share your summaries or read others</p>
+          </div>
+        </div>
+    </section>
+    <main class="contentPadding">
+        <section class="searchForm">
+            <form action="/" method="GET">
+                <div>
+                    <label for="title">Title</label>
+                    <input type="text" name="title" id="title" placeholder="Harry Potor">
+                </div>
+                <div>
+                    <label for="writer">publisher</label>
+                    <input type="text" name="publisher" id="publisher" placeholder="Asiel Abdulrahman">
+                </div>
+                <div>
+                    <label for="category">Category</label>
+                    <select name="category" id="category">
+                        <option value="all">All</option>
+                        <option value="culture">Culture</option>
+                        <option value="art">Art</option>
+                        <option value="computer">Computer science</option>
+                        <option value="literary">Literary</option>
+                        <option value=""></option>
+                        <option value=""></option>
+                        <option value=""></option>
+                    </select>
+                </div>
+                <button type="submit">Search</button>
+            </form>
+        </section>
+        <section class="books">
+            <%summaries.forEach(summary => {%>
+              <%-include("partials/summaries", {summary:summary})%>
+            <%})%>
+        </section>
+        <aside>
+            <section class="progressSection">
+                <div><img src="images/123.png" alt=""></div>
+                <h3>You have put 9 of 10 Summaries </h3>
+                <div class="progressBar">
+                    <div class="done"></div>
+                </div>
+            </section>
+        </aside>
+    </main>
+    <%-include("partials/footer.ejs")%>
+
+    <script src="https://use.fontawesome.com/a1f22c7e5c.js"></script>
+</body>
+</html>

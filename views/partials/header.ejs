@@ -1,0 +1,18 @@
+<header>
+    <div class="upperHeaderPart">
+      <div class="logo">
+          <a href="/">
+            <img src="/images/logo3.png" alt="logo">
+          </a>
+      </div>
+      <a href="/signup" class="signup">Sign up</a>
+        <%if(user){%>
+        <div class="headerImg"><a href="/profile/<%=user._id%>"><img src="/images/profile_image.png" alt=""></a></div>
+        <%}%>
+    </div>
+    <ul class="utilities">
+    <li><a href="/">Home</a></li>
+    <li><a href="/challenge">Challenges</a></li>
+    <li><a href="/publish">Publish</a></li>
+    </ul>   
+</header>

@@ -5,7 +5,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="/css/profile.min.css">
-    <title>Document</title>
+    <title>goodSummaries</title>
 </head>
 <body>
     <%-include("partials/header.ejs")%>
@@ -14,18 +14,18 @@
             <div class="profileImage"><img src="/images/profile_image.png" alt=""></div>
             <div>
                 <h3>Abdulrahman Emad</h3>
-                <a href="/editProfile/<%=user._id%>">Edit data</a>
+                <a href="/editProfile">Edit data</a>
             </div>
         </div>
-            <section class="allBooks">
-                <h4 class="booksTitle publishedTitle active" data-books = "publishedBooks">Published books</h4>
-                <h4 class="booksTitle savedTitle" data-books = "savedBooks">Saved Books</h4>
-                <section class="publishedBooks books" id="publishedBooks">
-                    <%publishedSummaries.forEach(summary => {%>
-                        <%-include("partials/summaries", {summary:summary})%>
-                    <%})%>
-                </section>
+        <section class="allBooks">
+            <h4 class="booksTitle publishedTitle active" data-books = "publishedBooks">Published books</h4>
+            <h4 class="booksTitle savedTitle" data-books = "savedBooks">Saved Books</h4>
+            <section class="publishedBooks books" id="publishedBooks">
+                <%publishedSummaries.forEach(summary => {%>
+                    <%-include("partials/summaries", {summary:summary})%>
+                <%})%>
             </section>
+        </section>
     </section>
         <%-include("partials/footer.ejs")%>
     <script> 

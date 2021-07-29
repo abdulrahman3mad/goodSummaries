@@ -6,7 +6,7 @@ const getProfilePage = async (req, res) => {
     res.render("profile.ejs", {publishedSummaries: publishedSummaries})
 }
 
-const getEditProfilePage = (req, res) => {
+const getEditProfilePage = async (req, res) => {
     res.render("editProfile.ejs")
 }
 

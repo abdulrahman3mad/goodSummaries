@@ -4,25 +4,15 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="css/editProfile.min.css">
-    <title>Document</title>
+    <link rel="stylesheet" href="/css/editProfile.min.css">
+    <title>goodSummaries</title>
 </head>
 <body>
-    <header>
-        <div class="logo">
-            <img src="images/logo3.png" alt="logo">
-            <a href="signup.html">Sign up</a>
-        </div>
-        <ul class="utilities">
-            <li><a href="home.html">Home</a></li>
-            <li><a href="challenge.html">Challenges</a></li>
-            <li><a href="publish.html">Publish</a></li>
-        </ul>   
-    </header>
+   <%-include("partials/header")%>
     <main class="contentPadding">
-        <form action="" method="POST">
+        <form action="profile" method="POST">
             <label for="name">name</label>
-            <input type="text" name="name" id="name">
+            <input type="text" name="name" id="name" value="<%=user.name%>">
             <label for="cover">Profile Photo</label>
             <input type="file" name="cover" id="cover">
             <button type="submit">Submit</button>

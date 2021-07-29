@@ -1,13 +1,6 @@
 const path = require("path")
 const Summary = require("../model/summary")
 const User = require("../model/user")
-const cloudinary =  require("cloudinary").v2
-
-cloudinary.config({ 
-    cloud_name: 'mestudent', 
-    api_key: process.env.APIKEY, 
-    api_secret: process.env.APISECRET 
-  });
 
 const md = require("markdown-it")({
     html: true,
@@ -27,17 +20,11 @@ const getPublishPage = (req, res) => {
 
 const publishSummary = async (req, res) => {
     try{
-        let imageUrl = null;
-        cloudinary.uploader.upload(req.body.cover, (err, result) => {
-            console.log(err)
-            imageUrl = result
-        })
         const summary = new Summary({
             title: req.body.title,
             category:req.body.category,
             content: req.body.content,
             publisher: req.user.name,
-            imageUrl: imageUrl
         })
         const savedSummary = await summary.save()   
         req.user.publishedSummaries.push(savedSummary._id)
@@ -45,7 +32,7 @@ const publishSummary = async (req, res) => {
         res.redirect("/")
 
     }catch{
-        res.render("404")
+        res.render("404.ejs")
     }
 }
 
@@ -53,14 +40,28 @@ const deleteSummary = (req, res) => {
 
 }
 
-const editSummary = (req, res) => {
+const getEditSummaryPage = async (req, res) => {
+    //caching here
+    const summary = await Summary.findById(req.params.id)
+    res.render("editSummary.ejs", {summary:summary})
+}
 
+const editSummary = async (req, res) => {
+    
+    const newSummary = {
+        title: req.body.title,
+        content: req.body.content,
+        category: req.body.category
+    }
+    await Summary.updateOne({_id:req.params.id}, newSummary)
+    res.redirect(`/summary/${req.params.id}`)
 }
 
 module.exports = {
     getSummary, 
     publishSummary,
     getPublishPage,
+    getEditSummaryPage,
     editSummary, 
     deleteSummary
 }

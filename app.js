@@ -10,6 +10,7 @@ const authRouter = require("./router/authRouter")
 const summaryRouter = require("./router/summaryRouter")
 const homeController = require("./controller/homeController")
 const userRouter = require("./router/userRouter")
+const challengeRouter = require("./router/challengeRouter")
 //middleware
 const isTokenVerified = require("./middleWares/AuthMiddleWares")
 

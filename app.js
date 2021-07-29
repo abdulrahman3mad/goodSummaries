@@ -23,9 +23,35 @@ mongoose.connect(process.env.DB_URL, { useNewUrlParser: true, useUnifiedTopology
         console.log("Everything is nice here")
     })
 })
-
-app.get("/", homeController.getHome)
+/*
+app.get("/", isTokenVerified, homeController.getHome)
 app.use("/", authRouter)
 app.use("/", isTokenVerified, userRouter)
 app.use("/", isTokenVerified, summaryRouter)
+*/
 
+const Summary = require("./model/summary")
+const markDown = require("markdown-it")()
+
+const search = (req) => {
+    let searchResult = {}
+    if(req.query.title!=undefined && req.query.title!=""){
+        searchResult.title = new RegExp(req.query.title, "i")
+    }
+    if(req.query.publisher!=undefined && req.query.publisher!=""){
+        searchResult.publisher = new RegExp(req.query.publisher, "i")
+    }
+    if(req.query.category!=undefined && req.query.category!="all"){
+        searchResult.category = req.query.category
+    }
+    return searchResult
+}
+
+app.get("/",  async (req, res) => {
+    try{
+        const summaries = await Summary.find(search(req))
+        res.render("home", {summaries: summaries, user:null})
+    }catch{
+        res.render("404")
+    }
+})

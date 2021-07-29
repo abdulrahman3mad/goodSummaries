@@ -18,7 +18,7 @@ const search = (req) => {
 const getHome = async (req, res) => {
     try{
         const summaries = await Summary.find(search(req))
-        res.render("home", {summaries: summaries})
+        res.render("home.ejs", {summaries: summaries})
     }catch{
         res.render("404")
     }

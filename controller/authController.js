@@ -20,11 +20,11 @@ const login = async (req, res) => {
     try{
         const user = await User.findOne({email: req.body.email})
         if(!user)
-            res.render("login", {errorMessage: "This email is not registered yet!"})
+            res.render("login.ejs", {errorMessage: "This email is not registered yet!"})
         
         const isEqual = await bcrypt.compare(req.body.password, user.password)
         if(!isEqual)
-            res.render("login", {errorMessage: "This password is not right"})
+            res.render("login.ejs", {errorMessage: "This password is not right"})
 
         const token = jwt.sign({_id: user._id}, "Summaries is a good place")
         res.cookie("auth-token", token)

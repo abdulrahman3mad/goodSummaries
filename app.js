@@ -13,7 +13,7 @@ const userRouter = require("./router/userRouter")
 //middleware
 const isTokenVerified = require("./middleWares/AuthMiddleWares")
 
-app.set("view engine", "ejs")
+app.set("view engine", ejs)
 app.set("views", path.join(__dirname, "/views"))
 app.use(express.static("public"))
 app.use(express.urlencoded())
@@ -49,7 +49,7 @@ const search = (req) => {
 
 app.get("/",  async (req, res) => {
     try{
-        res.render("home", {summaries: null, user:null})
+        res.render("home.ejs", {summaries: [], user:null})
     }catch{
         res.render("404")
     }

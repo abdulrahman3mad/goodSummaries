@@ -28,5 +28,6 @@ mongoose.connect(process.env.DB_URL, { useNewUrlParser: true, useUnifiedTopology
 app.get("/", isTokenVerified, homeController.getHome)
 app.use("/", authRouter)
 app.use("/", isTokenVerified, userRouter)
+app.use("/", isTokenVerified, challengeRouter)
 app.use("/", isTokenVerified, summaryRouter)
 

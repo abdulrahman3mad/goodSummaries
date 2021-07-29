@@ -5,7 +5,9 @@
             <img src="/images/logo3.png" alt="logo">
           </a>
       </div>
-      <a href="/signup" class="signup">Sign up</a>
+      <%if(!user){%>
+        <a href="/signup" class="signup">Sign up</a>
+        <%}%>
         <%if(user){%>
         <div class="headerImg"><a href="/profile/<%=user._id%>"><img src="/images/profile_image.png" alt=""></a></div>
         <%}%>

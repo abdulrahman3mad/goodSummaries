@@ -1,7 +1,6 @@
 const jwt = require("jsonwebtoken");
 const bcrypt = require("bcrypt");
 const User = require("../model/user")
-const ejs = require("ejs")  
 
 //generic functions 
 function creatJWToken(res, user) {

@@ -49,8 +49,7 @@ const search = (req) => {
 
 app.get("/",  async (req, res) => {
     try{
-        const summaries = await Summary.find(search(req))
-        res.render("home", {summaries: summaries, user:null})
+        res.render("home", {summaries: null, user:null})
     }catch{
         res.render("404")
     }

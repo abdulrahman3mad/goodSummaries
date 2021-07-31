@@ -10,11 +10,11 @@
 <body>
     <%-include("partials/header.ejs")%>
     <main class="contentPadding">
-        <form action="" method="POST">
+        <form action="/publish" method="POST" enctype="multipart/form-data">
             <label for="title">Title</label>
             <input type="text" name="title" id="title" required>
             <label for="cover">cover</label>
-            <input type="file" name="cover" id="cover">
+            <input type="file" name="cover" id="cover" required>
             <!--
             <div class="summaryBox">
                 <ul class="writeReadOptions">

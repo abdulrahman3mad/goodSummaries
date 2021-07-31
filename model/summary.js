@@ -13,10 +13,12 @@ const summarySchema = new mongoose.Schema(
         type: String,
         required: true,
       },
-      publisher: {
-        type: String,
-        required: true,
-      },
+      publisherId: String,
+      publisherName: String,
+      img:{
+        data: Buffer,
+        contentType: String
+      }
     },
     { timestamps: true }
 )

@@ -1,12 +1,7 @@
 const jwt = require("jsonwebtoken");
 const bcrypt = require("bcrypt");
+const fs = require("fs")
 const User = require("../model/user")
-
-//generic functions 
-function creatJWToken(res, user) {
-    const token = jwt.sign({_id: user._id}, "Summaries is a good place")
-    res.cookie("auth-token.ejs", token)
-}
 
 const getLoginPage = (req, res) => {
     res.render("login.ejs", {errorMessage: ""})
@@ -37,21 +32,24 @@ const login = async (req, res) => {
 const signUp = async (req, res) => {
     try{
         const userByEmail = await User.findOne({email: req.body.email})
-        const userByName = await User.findOne({name: req.body.email})
 
         if(userByEmail)  res.render("signup.ejs", {errorMessage: "This email is already registered"})
 
-        if(userByName)  res.render("signup.ejs", {errorMessage: "This name is already registered"})
-
         const salt = await bcrypt.genSalt(10)
         const hashedPassword = await bcrypt.hash(req.body.password, salt)
-
+        
         const newUser = new User({
-            name: req.body.name,
+            userName: req.body.userName,
             email: req.body.email,
-            password: hashedPassword
+            password: hashedPassword,
+            avatar:{
+                data: fs.readFileSync("./uploads/avatar-1627738360913"),
+                contentType: "image/jpeg"
+            }
         })
-        creatJWToken(res, newUser)
+        await newUser.save()
+        const token = jwt.sign({_id: newUser._id}, "Summaries is a good place")
+        res.cookie("auth-token.ejs", token)
         res.redirect("/")        
     }catch{
         res.render("404.ejs")

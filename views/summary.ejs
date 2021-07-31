@@ -11,14 +11,14 @@
     <%-include("partials/header.ejs")%>
     <section class="content contentPadding">
         <section class="bookHeader">
-            <div class="bookImage"><img src="/images/bookimage.jpg" alt=""></div>
+            <div class="bookImage"><img src="data:image/<%=summary.img.contentType%>;base64,<%=summary.img.data.toString('base64')%>" alt=""></div>
             <div class="icons">
                 <div class="edit icon"><a href="/edit/<%=summary._id%>">edit</a></div>
-                <div class="delete icon"><a href="delete"></a>delete</div>
+                <div class="delete icon"><a href="/delete/<%=summary._id%>">delete</a></div>
            </div>
         </section>
         <h1><%=summary.title%></h1>
-        <p>by <a href="/profile/<%=summary.publisher%>"><%=summary.publisher%></a></p>
+        <p>by <a href="/profile/<%=summary.publisherId%>"><%=summary.publisherName%></a></p>
         <div class="bookContent">
             <%-summary.content%>
         </div>

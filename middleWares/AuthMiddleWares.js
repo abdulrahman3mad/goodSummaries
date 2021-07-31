@@ -4,7 +4,6 @@ const User = require("../model/user");
 
 module.exports = async function (req, res, next) {
     const token = req.cookies["auth-token"];
-
     if (!token) {
         res.locals.user = req.user = null;
         res.redirect("login")

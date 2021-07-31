@@ -4,7 +4,9 @@ const mongoose = require("mongoose")
 const cookieParser = require("cookie-parser")
 const dotenv = require("dotenv").config()
 const path = require("path")
+const methodOverride = require("method-override")
 const ejs = require("ejs")  
+const multer = require("multer")
 //routers 
 const authRouter = require("./router/authRouter")
 const summaryRouter = require("./router/summaryRouter")
@@ -19,6 +21,8 @@ app.set("views", path.join(__dirname, "/views"))
 app.use(express.static("public"))
 app.use(express.urlencoded())
 app.use(cookieParser())
+
+
 mongoose.connect(process.env.DB_URL, { useNewUrlParser: true, useUnifiedTopology: true }, () => {
     app.listen(process.env.PORT, () => {
         console.log("Everything is nice here")

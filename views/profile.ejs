@@ -11,9 +11,9 @@
     <%-include("partials/header.ejs")%>
     <section class="mainContent contentPadding" >
         <div class="userData">
-            <div class="profileImage"><img src="/images/profile_image.png" alt=""></div>
+            <div class="profileImage"><img src="data:image/<%=user.avatar.contentType%>;base64,<%=user.avatar.data.toString('base64')%>" alt=""></div>
             <div>
-                <h3>Abdulrahman Emad</h3>
+                <h3><%=user.userName%></h3>
                 <a href="/editProfile">Edit data</a>
             </div>
         </div>

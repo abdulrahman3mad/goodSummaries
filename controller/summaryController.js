@@ -1,6 +1,8 @@
 const path = require("path")
 const Summary = require("../model/summary")
 const User = require("../model/user")
+const multer = require("multer")
+const fs = require("fs")
 
 const md = require("markdown-it")({
     html: true,
@@ -24,7 +26,12 @@ const publishSummary = async (req, res) => {
             title: req.body.title,
             category:req.body.category,
             content: req.body.content,
-            publisher: req.user.name,
+            publisherName: req.user.userName,
+            publisherId: req.user._id,
+            img: {
+                  data: fs.readFileSync("./uploads/" + req.file.filename),
+                  contentType: req.file.mimetype
+            }
         })
         const savedSummary = await summary.save()   
         req.user.publishedSummaries.push(savedSummary._id)
@@ -36,8 +43,9 @@ const publishSummary = async (req, res) => {
     }
 }
 
-const deleteSummary = (req, res) => {
-
+const deleteSummary = async (req, res) => {
+    await Summary.deleteOne({_id: req.params.id})
+    res.redirect("/")
 }
 
 const getEditSummaryPage = async (req, res) => {

@@ -10,11 +10,11 @@
 <body>
    <%-include("partials/header")%>
     <main class="contentPadding">
-        <form action="profile" method="POST">
+        <form action="/profile" method="POST" enctype="multipart/form-data">
             <label for="name">name</label>
-            <input type="text" name="name" id="name" value="<%=user.name%>">
+            <input type="text" name="userName" id="userName" placeholder="The name that would be displayed" required value="<%=user.userName%>">
             <label for="cover">Profile Photo</label>
-            <input type="file" name="cover" id="cover">
+            <input type="file" name="avatar" id="avatar">
             <button type="submit">Submit</button>
         </form>
     </main>

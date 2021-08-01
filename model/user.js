@@ -17,7 +17,8 @@ const userSchema = new mongoose.Schema(
       data: Buffer,
       contentType: String
     },
-    publishedSummaries:[]
+    publishedSummaries:[],
+    publishedChallenge:String 
   },
   { timestamps: true }
 );

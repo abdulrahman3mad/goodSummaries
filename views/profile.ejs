@@ -14,7 +14,9 @@
             <div class="profileImage"><img src="data:image/<%=user.avatar.contentType%>;base64,<%=user.avatar.data.toString('base64')%>" alt=""></div>
             <div>
                 <h3><%=user.userName%></h3>
-                <a href="/editProfile">Edit data</a>
+                <%if(user._id == visitorUser._id){%>
+                   <a href="/editProfile">Edit data</a>
+                <%}%>
             </div>
         </div>
         <section class="allBooks">

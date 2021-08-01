@@ -10,14 +10,12 @@
         <%}%>
         <%if(user){%>
           <a href="/logout" class="signup">Log out</a>
-          <%}%>
-        <%if(user){%>
         <div class="headerImg"><a href="/profile/<%=user._id%>"><img src="data:image/<%=user.avatar.contentType%>;base64,<%=user.avatar.data.toString('base64')%>" alt=""></a></div>
         <%}%>
     </div>
     <ul class="utilities">
     <li><a href="/">Home</a></li>
-    <li><a href="/challenge">Challenges</a></li>
+    <li><a href="/challenge/<%=user._id%>">Challenges</a></li>
     <li><a href="/publish">Publish</a></li>
     </ul>   
 </header>

@@ -1,4 +1,5 @@
 const Summary = require("../model/summary")
+const Challenge = require("../model/challenge")
 const markDown = require("markdown-it")()
 
 const search = (req) => {
@@ -17,8 +18,9 @@ const search = (req) => {
 
 const getHome = async (req, res) => {
     try{
-        const summaries = await Summary.find(search(req))
-        res.render("home.ejs", {summaries: summaries})
+        const summaries = await Summary.find(search(req)).select("title publisherId publisherName img")
+        const challenge = await Challenge.findOne({user: req.user._id})
+        res.render("home.ejs", {summaries: summaries, challenge: challenge})
     }catch{
         res.render("404")
     }

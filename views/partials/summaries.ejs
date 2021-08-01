@@ -1,8 +1,10 @@
 <article class="book">
     <a href="/summary/<%=summary._id%>">
         <div class="bookImage"><img src="data:image/<%=summary.img.contentType%>;base64,<%=summary.img.data.toString('base64')%>" alt=""></div>
-        <h3 class="title"><%=summary.title%></h3>
-        <p class="writer"> By <a href="/profile/<%=summary.publisherId%>"><%=summary.publisherName%></a></p>
+        <div class="content">
+            <h3 class="title"><%=summary.title%></h3>
+            <p class="writer"> By <a href="/profile/<%=summary.publisherId%>"><%=summary.publisherName%></a></p>
+        </div>
     </a>
 </article>       
 

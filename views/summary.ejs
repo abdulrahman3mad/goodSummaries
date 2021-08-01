@@ -12,10 +12,12 @@
     <section class="content contentPadding">
         <section class="bookHeader">
             <div class="bookImage"><img src="data:image/<%=summary.img.contentType%>;base64,<%=summary.img.data.toString('base64')%>" alt=""></div>
-            <div class="icons">
-                <div class="edit icon"><a href="/edit/<%=summary._id%>">edit</a></div>
-                <div class="delete icon"><a href="/delete/<%=summary._id%>">delete</a></div>
-           </div>
+            <%if(user._id == summary.publisherId){%>
+                <div class="icons">
+                    <div class="edit icon"><a href="/edit/<%=summary._id%>">edit</a></div>
+                    <div class="delete icon" data-summary="<%=summary._id%>">delete</div>
+                </div>
+            <%}%>
         </section>
         <h1><%=summary.title%></h1>
         <p>by <a href="/profile/<%=summary.publisherId%>"><%=summary.publisherName%></a></p>
@@ -24,5 +26,17 @@
         </div>
     </section>
   <%-include("partials/footer.ejs")%>
+  <script>
+      const deleteIcon = document.querySelector(".delete")
+      deleteIcon.addEventListener("click", () => {
+        const endPoint = `/delete/${deleteIcon.dataset.summary}`
+        fetch(endPoint, {
+            method:"DELETE"
+        }).then(res => {
+            window.location.href = res.url
+        })
+      });
+
+  </script>
 </body>
 </html>

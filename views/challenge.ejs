@@ -4,35 +4,53 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="css/challenge.min.css">
+    <link rel="stylesheet" href="/css/challenge.min.css">
     <title>goodSummaries</title>
 </head>
 <body>
     <%-include("partials/header.ejs")%>
     <div class="upperBackground">
-        <div class="viewImage"><img src="images/profile_image.png" alt=""></div>
+        <div class="viewImage"><img src="/images/profile_image.png" alt=""></div>
         <h2>Summarization Challenges</h2>
     </div>
     <main class="contentPadding">
-        <section>
-            <div class="upperData">
-                <p class="date">1/1/2021:1/1/2022</p>
-                <div class="icons">
-                    <span class="edit">Edit</span>
-                    <span class="delete">Delete</span>
-                </div>
-            </div>
-            <h3 class="challengeTitle">You have put 9 of 10 Summaries</h3>
-            <div class="progressBar">
-                <div class="done"></div>
-            </div>
-            <section class="readBooks">
-                <div><img src="images/cover.png" alt=""></div>
-                <div><img src="images/bookimage.jpg" alt=""></div>
-                <div><img src="images/cover.png" alt=""></div>
+        <%if(!challenge){%>
+            <section class = "addingChallengeBox">
+                <form action="/challenge" method="POST">
+                    <p>I aim to read and Summarize </p>
+                    <input type="number" name="numberOfBooks" min=1 id="numberOfBooks"><p>Books this year</p>
+                    <button type="submit" class="button">Publish</button>
+                </form>
             </section>
-        </section>
+        <%}%>
+        <%if(challenge){%>
+            <section>
+                <div class="upperData">
+                    <div class="icons">
+                        <span class="edit">Edit</span>
+                        <span class="delete">Delete</span>
+                    </div>
+                </div>
+                <h3 class="challengeTitle">You have put <%=challenge.summaries.length%> of <%=challenge.numberOfBooks%> Summaries</h3>
+                <div class="progressBar">
+                    <div class="done" data-numberSummaries= "<%=challenge.summaries.length%>" data-numberBooks = "<%=challenge.numberOfBooks%>"></div>
+                </div>
+                <section class="readBooks">
+                    <%summaries.forEach(summary => {%>
+                         <div>
+                            <img src="data:image/<%=summary.img.contentType%>;base64,<%=summary.img.data.toString('base64')%>" alt="">
+                        </div>
+                    <%})%>
+                </section>
+            </section>
+        <%}%>
     </main>
     <%-include("partials/footer.ejs")%>
+    <script>
+        const progressBar = document.querySelector(".done")
+        window.addEventListener("load", () => {
+            progressBar.style.width = `${progressBar.dataset.numbersummaries/progressBar.dataset.numberbooks*100}%`
+        });
+    </script>
 </body>
 </html>

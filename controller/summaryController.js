@@ -3,7 +3,7 @@ const Summary = require("../model/summary")
 const User = require("../model/user")
 const multer = require("multer")
 const fs = require("fs")
-
+const Challenge = require("../model/challenge")
 const md = require("markdown-it")({
     html: true,
     linkify: true,
@@ -36,6 +36,12 @@ const publishSummary = async (req, res) => {
         const savedSummary = await summary.save()   
         req.user.publishedSummaries.push(savedSummary._id)
         await req.user.save()
+
+        let challenge = await Challenge.findOne({user: req.user._id})
+        if(challenge){
+            challenge.summaries.push(savedSummary._id)
+            await challenge.save()
+        }
         res.redirect("/")
 
     }catch{
@@ -44,7 +50,11 @@ const publishSummary = async (req, res) => {
 }
 
 const deleteSummary = async (req, res) => {
-    await Summary.deleteOne({_id: req.params.id})
+    const summary = await Summary.findOneAndDelete({_id: req.params.id})
+    const challenge = await Challenge.findOne({user: req.user._id})
+    const index = challenge.summaries.indexOf(summary._id)
+    challenge.splice(index)
+    await challenge.save()
     res.redirect("/")
 }
 

@@ -6,16 +6,6 @@ const challengeSchema = mongoose.Schema({
         default:0,
         required: true
     },
-    numberOfSummaries: {
-        type:Number,
-        default:0
-    },
-    startDate: {
-        type:Date
-    },
-    endDate:{
-        type:Date
-    },
     user: {
         type:String,
         required:true

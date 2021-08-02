@@ -29,7 +29,7 @@
   <script>
       const deleteIcon = document.querySelector(".delete")
       deleteIcon.addEventListener("click", () => {
-        const endPoint = `/delete/${deleteIcon.dataset.summary}`
+        const endPoint = `/summary/delete/${deleteIcon.dataset.summary}`
         fetch(endPoint, {
             method:"DELETE"
         }).then(res => {

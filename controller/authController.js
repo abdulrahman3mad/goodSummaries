@@ -43,7 +43,7 @@ const signUp = async (req, res) => {
             email: req.body.email,
             password: hashedPassword,
             avatar:{
-                data: fs.readFileSync("./uploads/avatar-1627738360913"),
+                data: fs.readFileSync("./uploads/avatar-1627740642530"),
                 contentType: "image/jpeg"
             }
         })

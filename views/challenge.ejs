@@ -27,8 +27,7 @@
             <section>
                 <div class="upperData">
                     <div class="icons">
-                        <span class="edit">Edit</span>
-                        <span class="delete">Delete</span>
+                        <span class="delete icon" data-summary="<%=challenge._id%>">Delete</span>
                     </div>
                 </div>
                 <h3 class="challengeTitle">You have put <%=challenge.summaries.length%> of <%=challenge.numberOfBooks%> Summaries</h3>
@@ -50,6 +49,16 @@
         const progressBar = document.querySelector(".done")
         window.addEventListener("load", () => {
             progressBar.style.width = `${progressBar.dataset.numbersummaries/progressBar.dataset.numberbooks*100}%`
+        })
+        
+        const deleteIcon = document.querySelector(".delete")
+        deleteIcon.addEventListener("click", () => {
+            const endPoint = `/challenge/delete/${deleteIcon.dataset.summary}`
+            fetch(endPoint, {
+                method:"DELETE"
+            }).then(res => {
+                window.location.href = res.url
+            })
         });
     </script>
 </body>

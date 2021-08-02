@@ -3,12 +3,16 @@ const Summary = require("../model/summary")
 const fs = require("fs")
 
 const getProfilePage = async (req, res) => {
-    const user = req.user._id
-    if(req.user._id != req.params.id){
-        const user = await User.findById(req.params.id)
+    try{
+        let user = req.user
+        if(req.user._id != req.params.id){
+            user = await User.findById(req.params.id)
+        }
+        const publishedSummaries = await Summary.find({publisherId: user._id})
+        res.render("profile.ejs", {publishedSummaries: publishedSummaries, visitorUser: user})
+    }catch{
+        res.render("404.ejs")
     }
-    const publishedSummaries = await Summary.find({publisherId: user._id})
-    res.render("profile.ejs", {publishedSummaries: publishedSummaries, visitorUser: user})
 }
 
 const getEditProfilePage = async (req, res) => {

@@ -4,8 +4,6 @@ const Summary = require("../model/summary")
 
 const getChallengePage = async (req, res) => {
     const challenge = await Challenge.findOne({user: req.user._id})
-    console.log(challenge)
-    //each challenge has number of books ids
     let summaries = null
     if(challenge){
         summaries = await Summary.find({_id: challenge.summaries})
@@ -32,9 +30,16 @@ const displayAllChallenges = (req, res) => {
 
 }
 
+const deleteChallenge = async (req, res) => {
+    await Challenge.findOneAndRemove({_id: req.params.id})
+    req.user.publishedChallenge = ""
+    await req.user.save()
+    res.redirect(`/challenge/${req.user._id}`)
+}
 module.exports = {
     getChallengePage,
     putChallenge,
     editChallenge, 
-    displayAllChallenges
+    displayAllChallenges,
+    deleteChallenge
 }

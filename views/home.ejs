@@ -49,6 +49,7 @@
               <%-include("partials/summaries", {summary:summary})%>
             <%})%>
         </section>
+        <%if(challenge){%>
         <aside>
             <section class="progressSection">
                 <div><img src="/images/123.png" alt=""></div>
@@ -58,6 +59,7 @@
                 </div>
             </section>
         </aside>
+        <%}%>
     </main>
     <%-include("partials/footer.ejs")%>
     <script>

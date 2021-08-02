@@ -50,15 +50,7 @@
             <%})%>
         </section>
         <%if(challenge){%>
-        <aside>
-            <section class="progressSection">
-                <div><img src="/images/123.png" alt=""></div>
-                <h3>You have put <%=challenge.summaries.length%> of <%=challenge.numberOfBooks%> Summaries </h3>
-                <div class="progressBar">
-                    <div class="done" data-numberSummaries= "<%=challenge.summaries.length%>" data-numberBooks = "<%=challenge.numberOfBooks%>" > </div>
-                </div>
-            </section>
-        </aside>
+            
         <%}%>
     </main>
     <%-include("partials/footer.ejs")%>

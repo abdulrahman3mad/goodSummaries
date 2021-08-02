@@ -19,7 +19,7 @@ const search = (req) => {
 const getHome = async (req, res) => {
     try{
         const summaries = await Summary.find(search(req)).select("title publisherId publisherName img")
-        const challenge = await Challenge.findOne({user: req.user._id})
+        const challenge = await Challenge.findOne({user: req.user._id}) || false
         res.render("home.ejs", {summaries: summaries, challenge: challenge})
     }catch{
         res.render("404")

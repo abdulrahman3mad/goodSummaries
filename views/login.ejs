@@ -9,9 +9,10 @@
 </head>
 <body>
     <main>
-        <p class="serverMessage"><%=errorMessage%></p>
+        <p class="serverMessage" id="serverMessage"><%=errorMessage%></p>
         <div class="mainCover"><img src="images/signup.png" alt=""></div>
         <div class="logo"><img src="images/logo3.png" alt=""></div>
+        <p class="info">A community in which people can share their summaries</p>
         <form action="login" method="POST" class="form">
             <input type="email" name="email" id= "email" placeholder="Email Address" required>
             <input type="password" name="password" id="password" placeholder="Password" required>
